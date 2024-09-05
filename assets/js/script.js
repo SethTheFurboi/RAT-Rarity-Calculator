@@ -313,6 +313,7 @@ var baseIcons = [
 	{ Name: "Phantom of the Swag", Chance: 0.03},
 	{ Name: "Eekiest EEK!", Chance: 0.03},
 	{ Name: "The Pharaoh's Curse", Chance: 0.03},
+	{ Name: "Mutant Kenny", Chance: 0.03},
 
 ]
 
