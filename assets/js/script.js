@@ -9,6 +9,9 @@ function roundNumber(number, digits) {
     const roundedNum = Math.round(number * multiple) / multiple;
     return roundedNum;
 }
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
 
 // Asked ChatGPT to do this because I am lazy as heck -Kenshin
 
@@ -118,7 +121,39 @@ var baseIcons = [
 	{ Name: "Cheddar Secretary", Chance: 0.01 },
 	{ Name: "Prince of Cheddar", Chance: 0.01 },
 	{ Name: "Cheddarkeeper", Chance: 0.01 },
-	{ Name: "Cheddar Pancakes", Chance: 0.01 }
+	{ Name: "Cheddar Pancakes", Chance: 0.01 },
+	{ Name: "Energized Guy", Chance: 0.16},
+    { Name: "Energized Doggo", Chance: 0.16},
+    { Name: "Enerjogaloid", Chance: 0.08},
+    { Name: "Nuclear Bomb", Chance: 0.08},
+    { Name: "Energized Stitch", Chance: 0.08},
+    { Name: "Energized April", Chance: 0.08},
+    { Name: "Energized Slime", Chance: 0.08},
+    { Name: "He Steals his Neighbor's Electricity", Chance: 0.08},
+    { Name: "Energized Nerd Cube", Chance: 0.08},
+    { Name: "Energized Dots", Chance: 0.04},
+    { Name: "Energized Shade", Chance: 0.04},
+    { Name: "Corrupted Energy", Chance: 0.04},
+    { Name: "Energized Scrunkly", Chance: 0.04},
+    { Name: "Energized Firey", Chance: 0.04},
+    { Name: "Energized Landlord", Chance: 0.04},
+    { Name: "Autism Energy", Chance: 0.04},
+    { Name: "Energized Virus", Chance: 0.04},
+    { Name: "Energized EEK!", Chance: 0.04},
+    { Name: "Energized n' Tiny", Chance: 0.04},
+    { Name: "Energized Cyber Critter", Chance: 0.04},
+    { Name: "Energized Leafy", Chance: 0.04},
+    { Name: "Energized Prince", Chance: 0.02},
+    { Name: "Energized Thing", Chance: 0.02},
+    { Name: "Energized", Chance: 0.02},
+    { Name: "Energized Pancakes", Chance: 0.02},
+    { Name: "Energized Red Vulpes", Chance: 0.02},
+    { Name: "Energized Wattson", Chance: 0.02},
+    { Name: "Energized Parkkeeper", Chance: 0.02},
+    { Name: "Energized Gatchi", Chance: 0.02},
+    { Name: "Energized Kanae", Chance: 0.02},
+    { Name: "Energized Chester", Chance: 0.02},
+    { Name: "Energized Secretary", Chance: 0.02}
 ]
 
 
@@ -149,7 +184,7 @@ var rainbowChance = 0.391
 
 var printSkills = function (name, tween, gleam, isRainbow, rarity) {
   var listEl = $('<li>');
-  var iconString = ((isRainbow == true ? "Rainbow " : "") + ((tween != null && tween + " ") || "") + ((gleam != null && gleam + " ") || "") + name + " (1 in " + roundNumber(rarity,2) + ")")
+  var iconString = ((isRainbow == true ? "Rainbow " : "") + ((tween != null && tween + " ") || "") + ((gleam != null && gleam + " ") || "") + name + " (1 in " + numberWithCommas(roundNumber(rarity,2)) + ")")
   listEl.addClass('list-group-item').text(iconString);
   listEl.appendTo(IconsListEl);
 };
