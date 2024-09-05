@@ -16,6 +16,9 @@ function numberWithCommas(x) {
 // Asked ChatGPT to do this because I am lazy as heck -Kenshin
 
 var baseIcons = [
+
+	// Base game icons
+
 	{ Name: "loln00b", Chance: 3.85 },
 	{ Name: "Lizard Man", Chance: 3.85 },
 	{ Name: "Angry Battle Grunt", Chance: 3.85 },
@@ -123,6 +126,9 @@ var baseIcons = [
 	{ Name: "Prince of Cheddar", Chance: 0.01 },
 	{ Name: "Cheddarkeeper", Chance: 0.01 },
 	{ Name: "Cheddar Pancakes", Chance: 0.01 },
+
+	// Weather event
+
 	{ Name: "Energized Guy", Chance: 0.16},
     { Name: "Energized Doggo", Chance: 0.16},
     { Name: "Enerjogaloid", Chance: 0.08},
@@ -155,7 +161,36 @@ var baseIcons = [
     { Name: "Energized Kanae", Chance: 0.02},
     { Name: "Energized Chester", Chance: 0.02},
     { Name: "Energized Secretary", Chance: 0.02},
-    //Left this space for pride icons -Kenshin	
+
+    //Left this space for pride icons -Kenshin
+	{ Name: "Ally Guy", Chance: 0.256},
+	{ Name: "Gay Noob", Chance: 0.256},
+	{ Name: "Gay Dog", Chance: 0.256},
+	{ Name: "Gay Nerd", Chance: 0.256},
+	{ Name: "Gaypril", Chance: 0.128},
+	{ Name: "Genderfluid Mousie", Chance: 0.128},
+	{ Name: "The Be-er of Gay and Do-er of Crime", Chance: 0.128},
+	{ Name: "Gay Slime", Chance: 0.128},
+	{ Name: "Trans Pride TBH", Chance: 0.064},
+	{ Name: "MLM Pride Sterling", Chance: 0.064},
+	{ Name: "Ace Pride Stitch", Chance: 0.064},
+	{ Name: "trans pride cere", Chance: 0.064},
+	{ Name: "Susmogaloid", Chance: 0.064},
+	{ Name: "Lesbian Believer", Chance: 0.032},
+	{ Name: "Enby Pride Cat", Chance: 0.032},
+	{ Name: "Gay Landlord", Chance: 0.032},
+	{ Name: "Pan Pride Secretary", Chance: 0.032},
+	{ Name: "Gaykeeper", Chance: 0.032},
+	{ Name: "Enby Pride Andy", Chance: 0.032},
+	{ Name: "MLM Pride Kanae", Chance: 0.032},
+	{ Name: "Genderfluid Gatchi", Chance: 0.032},
+	{ Name: "Gay Spider", Chance: 0.032},
+	{ Name: "Ace Pride Wattson", Chance: 0.032},
+	{ Name: "Gay Robot", Chance: 0.032},
+	{ Name: "Prince of Bi", Chance: 0.032},
+	{ Name: "Just WOKE", Chance: 0.005},
+
+	// Valentines
     { Name: "Heart Guy", Chance: 4.55},
 	{ Name: "Lovely Heart Guy", Chance: 0.116},
 	{ Name: "Lovely Doggo", Chance: 0.116},
@@ -173,7 +208,39 @@ var baseIcons = [
 	{ Name: "Prince of Friendship", Chance: 0.029},
 	{ Name: "Lovely Secretary", Chance: 0.029},
 	{ Name: "Lovely Cat Thing", Chance: 0.029},
-	{ Name: "Lovely Pancake Cat", Chance: 0.029}
+	{ Name: "Lovely Pancake Cat", Chance: 0.029},
+
+	// Christmas
+	{ Name: "Can you believe it? (Green)", Chance: 0.083},
+	{ Name: "Can you believe it? (Brown)", Chance: 0.083},
+	{ Name: "Candle Slime", Chance: 0.1},
+	{ Name: "His Name is Arson", Chance: 0.067},
+	{ Name: "Prince of Christmas Past", Chance: 0.033},
+	{ Name: "She is going to melt herself", Chance: 0.033},
+	{ Name: "Just a week away!", Chance: 0.033},
+	{ Name: "Merrier EEK!", Chance: 0.033},
+	{ Name: "Candle Pancake Cat", Chance: 0.033},
+	{ Name: "Christmas Past", Chance: 0.033},
+
+	// Halloween
+	{ Name: "Ghostly Tax Fraud", Chance: 0.19},
+	{ Name: "Ghostly Slime", Chance: 0.19},
+	{ Name: "Eekier EEK!", Chance: 0.19},
+	{ Name: "Ghostly Stitch", Chance: 0.13},
+	{ Name: "Ghostly Shade", Chance: 0.13},
+	{ Name: "Spookmogaloid", Chance: 0.13},
+	{ Name: "Ghostly Pancake Cat", Chance: 0.06},
+	{ Name: "Ghostly Cat Thing", Chance: 0.06},
+	{ Name: "Ghostly Kenny", Chance: 0.06},
+	{ Name: "Ghostly Secretary", Chance: 0.06},
+	{ Name: "Ghostly Spider Girl", Chance: 0.06},
+	{ Name: "Ghostly Prince of Darkness", Chance: 0.06},
+	{ Name: "Witchy Witch Which Witch Which (Shade)", Chance: 0.03},
+	{ Name: "Pumpkrat King", Chance: 0.03},
+	{ Name: "Phantom of the Swag", Chance: 0.03},
+	{ Name: "Eekiest EEK!", Chance: 0.03},
+	{ Name: "The Pharaoh's Curse", Chance: 0.03},
+
 ]
 
 
@@ -188,15 +255,17 @@ var tweenEffects = [
 	{ Name: "Squishy Squashy", Chance: 0.059 }
 ]
 
+// Changed hearts, fool and tryhard chances to the chances they actually were due to a bug according to candyfloss -Seth
 
 var gleamEffects = [
 
   {Name: "Melting", Chance: 0.25},
   {Name: "California Weather", Chance: 0.25},
-  {Name: "Tryhard", Chance: 0.2},
-  {Name: "Pink Hearts", Chance: 0.5},
-  {Name: "Blue Hearts", Chance: 0.5},
-  {Name: "The Fool", Chance: 1}
+  {Name: "Tryhard", Chance: 0.25},
+  {Name: "Confetti", Chance: 0.25},
+  {Name: "Pink Hearts", Chance: 0.25},
+  {Name: "Blue Hearts", Chance: 0.25},
+  {Name: "The Fool", Chance: 0.5}
 	
 ]	
 
@@ -217,7 +286,7 @@ var handleFormSubmit = function (event) {
   var gleamInput = gleamInputEl.val()
   var rainbowSelected = document.getElementById("rainbow-checkbox")
 
-  console.log(rainbowSelected.checked)
+//   console.log(rainbowSelected.checked)
 
   if (!nameInput) {
     alert('You need to put in an icon!');
@@ -239,7 +308,7 @@ var handleFormSubmit = function (event) {
     
       if (currThing.Name.toLowerCase() == nameInput.toLowerCase()) {
         iconChance = currThing.Chance
-        console.log(currThing)
+        // console.log(currThing)
         iconName = currThing.Name
         break
       } 
@@ -282,6 +351,9 @@ var handleFormSubmit = function (event) {
   var calculated_rarity = 1 / ((iconChance / 100) * (tweenChance / 100) * (gleamChance / 100) * (rainbowSelected.checked == true ? rainbowChance : 100 - rainbowChance)  / 100)
   printSkills(iconName, tweenName, gleamName, rainbowSelected.checked, calculated_rarity);
 
+  // :3 (Please don't remove this it's funni -Seth)
+  console.log("Prism was here.")
+
   // resets form
   nameInputEl.val('')
   tweenInputEl.val('')
@@ -308,7 +380,7 @@ $(function () {
 	  
   }  
 
-  console.log(iconNames)
+//   console.log(iconNames)
   
   $('#icon-name').autocomplete({
     source: iconNames,
@@ -328,7 +400,7 @@ $(function () {
 		
 	}  
   
-	console.log(tweenNames)
+	// console.log(tweenNames)
 	
 	$('#tween-effect').autocomplete({
 	  source: tweenNames,
@@ -348,7 +420,7 @@ $(function () {
 		
 	}  
   
-	console.log(gleamNames)
+	// console.log(gleamNames)
 	
 	$('#gleam-effect').autocomplete({
 	  source: gleamNames,
