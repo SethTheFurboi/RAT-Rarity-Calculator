@@ -149,7 +149,7 @@ var rainbowChance = 0.391
 
 var printSkills = function (name, tween, gleam, isRainbow, rarity) {
   var listEl = $('<li>');
-  var iconString = ((isRainbow == true ? "Rainbow " : "") + ((tween != null && tween + " ") || "") + ((gleam != null && gleam + " ") || "") + name + " (1/" + roundNumber(rarity,2) + ")")
+  var iconString = ((isRainbow == true ? "Rainbow " : "") + ((tween != null && tween + " ") || "") + ((gleam != null && gleam + " ") || "") + name + " (1 in " + roundNumber(rarity,2) + ")")
   listEl.addClass('list-group-item').text(iconString);
   listEl.appendTo(IconsListEl);
 };
