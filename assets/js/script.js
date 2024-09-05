@@ -3,6 +3,7 @@ var nameInputEl = $('#icon-name');
 var tweenInputEl = $('#tween-effect');
 var gleamInputEl = $('#gleam-effect');
 var IconsListEl = $('#icons-list');
+var rainbowCheckBox = document.getElementById("rainbow-checkbox")
 
 var baseIcons = [
 	
@@ -22,10 +23,10 @@ var gleamEffects = {
 
 var rainbowChance = 0.391	
 
-var printSkills = function (name, tween, israinbow, rarity) {
+var printRarity = function (name, tween, gleam, isRainbow, rarity) {
   var listEl = $('<li>');
-  //var listDetail = name.concat(' on ', date);
-  listEl.addClass('list-group-item').text(`{israinbow ~= nil and "Rainbow"}{tween or ""}{name} (1/rarity)`);
+  var iconString = (((isRainbow == true & "Rainbow ") || "") + ((tween != null && tween + " ") || "") + ((gleam != null && gleam + " ") || "") + name + " (1/" + rarity + ")") 
+  listEl.addClass('list-group-item').text(iconString);
   listEl.appendTo(IconsListEl);
 };
 
@@ -41,19 +42,59 @@ var handleFormSubmit = function (event) {
     return;
   }
 
-  var iconChance = 1
-  var tweenChance = 1
-  var gleamChance = 1
+  var iconChance = 100
+  var tweenChance = 100
+  // Gleams are not added yet so ye
+  var gleamChance = 100
 
-  //printSkills(nameInput, dateInput);
+  var rainbowSelected = rainbowCheckBox.checked
+
+  console.log(rainbowSelected + " Rainbow")
+
+  // This is so messy but I'm lazy -Seth
+
+  for (var i = 0; i < baseIcons.length + 1; i++) {
+
+    var currThing = baseIcons[i]
+
+    if (currThing) {
+      if (currThing.Name == nameInput) {
+        iconChance = currThing.Chance
+        break
+      } 
+    }
+
+  }
+  
+  if (iconChance == 100) {
+    console.log('You need to put in an icon!');
+    return;
+  }
+
+  for (var i = 0; i < tweenEffects.length + 1; i++) {
+
+    var currThing = tweenEffects[i]
+
+    if (currThing) {
+      if (currThing.Name == tweenInput) {
+        tweenChance = currThing.Chance
+        break
+      }
+    }
+
+  }
+
+  var calChance = Math.round( (1/(iconChance/100)) * (1/(tweenChance/100)) * (1/(gleamChance/100)) * ((rainbowSelected == true ? rainbowChance : 100 - rainbowChance)/100) ) 
+
+  printRarity(nameInput, tweenInput, gleamInput, rainbowSelected, calChance);
 
   // resets form
   nameInputEl.val('');
+  tweenInputEl.val('');
+  gleamInputEl.val('');
 };
 
 formEl.on('submit', handleFormSubmit);
-
-// This is so messy but I'm lazy -Seth
 
 // Icon Autocomplete
 $(function () {
