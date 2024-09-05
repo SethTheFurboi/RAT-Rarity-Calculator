@@ -10,7 +10,7 @@ N/A
 
 ## Usage
 
-[Link to the webpage](https://seththefurboi.github.io/INSERTLINKWHENPUTONTOPAGESHERE/)
+[Link to the webpage](https://seththefurboi.github.io/RAT-Rarity-Calculator/)
 
 ## Credits
 
