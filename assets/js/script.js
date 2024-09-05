@@ -4,13 +4,13 @@ var IconsListEl = $('#icons-list');
 
 var baseIcons = {
 	
-	[“The Gnome”] = {Name = "The Gnome", Chance = 3.85}
+	“The Gnome” = {Name = "The Gnome", Chance = 3.85}
 	
 }
 
 var tweenEffects = {
 	
-	[“Shaking”] = {Name = "Shaking", Chance = 0.325}
+	“Shaking” = {Name = "Shaking", Chance = 0.325}
 	
 }
 
