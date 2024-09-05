@@ -1,29 +1,31 @@
 var formEl = $('#icon-form');
 var nameInputEl = $('#icon-name');
+var tweenInputEl = $('#tween-effect');
+var gleamInputEl = $('#gleam-effect');
 var IconsListEl = $('#icons-list');
 
-var baseIcons = {
+var baseIcons = [
 	
-	“The Gnome” = {Name = "The Gnome", Chance = 3.85}
+	{Name: "The Gnome", Chance: 3.85}
 	
-}
+]
 
-var tweenEffects = {
+var tweenEffects = [
 	
-	“Shaking” = {Name = "Shaking", Chance = 0.325}
+	{Name: "Shaking", Chance: 0.325}
 	
-}
+]
 
 var gleamEffects = {
 	
 }	
 
-var rainbowChance = 100	
+var rainbowChance = 0.391	
 
-var printSkills = function (name, tween, israinbow, percent, fractionrarity) {
+var printSkills = function (name, tween, israinbow, rarity) {
   var listEl = $('<li>');
   //var listDetail = name.concat(' on ', date);
-  listEl.addClass('list-group-item').text(`{israinbow ~= nil and "Rainbow"}{tween or ""}{name} (1/percent) (1/fractionrarity)`);
+  listEl.addClass('list-group-item').text(`{israinbow ~= nil and "Rainbow"}{tween or ""}{name} (1/rarity)`);
   listEl.appendTo(IconsListEl);
 };
 
@@ -31,11 +33,17 @@ var handleFormSubmit = function (event) {
   event.preventDefault();
 
   var nameInput = nameInputEl.val();
+  var tweenInput = tweenInputEl.val()
+  var gleamInput = gleamInputEl.val()
 
   if (!nameInput) {
-    console.log('You need to fill out the form!');
+    console.log('You need to put in an icon!');
     return;
   }
+
+  var iconChance = 1
+  var tweenChance = 1
+  var gleamChance = 1
 
   //printSkills(nameInput, dateInput);
 
@@ -49,16 +57,22 @@ formEl.on('submit', handleFormSubmit);
 
 // Icon Autocomplete
 $(function () {
-  var iconNames = [
-  ];
+
+  var iconNames = [];
   
   for (var i = 0; i < baseIcons.length + 1; i++) {
-	  
-	  iconNames.push(baseIcons[i].Name)
+
+    if (baseIcons[i] != null) {
+
+      iconNames.push(baseIcons[i].Name)
+
+    }
 	  
   }  
+
+  console.log(iconNames)
   
-  $('#skill-name').autocomplete({
-    source: skillNames,
+  $('#icon-name').autocomplete({
+    source: iconNames,
   });
 });

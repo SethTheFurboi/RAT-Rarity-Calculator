@@ -14,7 +14,8 @@ N/A
 
 ## Credits
 
-Coded By: Seth the Furboi;
+Coded By: Seth the Furboi
+
 Original RAT Rarity Calculator By: Kenshin (Nightly_Bacon)
 
 ## License
