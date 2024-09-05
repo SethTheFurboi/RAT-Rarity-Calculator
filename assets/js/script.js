@@ -154,7 +154,26 @@ var baseIcons = [
     { Name: "Energized Gatchi", Chance: 0.02},
     { Name: "Energized Kanae", Chance: 0.02},
     { Name: "Energized Chester", Chance: 0.02},
-    { Name: "Energized Secretary", Chance: 0.02}
+    { Name: "Energized Secretary", Chance: 0.02},
+    //Left this space for pride icons -Kenshin	
+    { Name: "Heart Guy", Chance: 4.55},
+	{ Name: "Lovely Heart Guy", Chance: 0.116},
+	{ Name: "Lovely Doggo", Chance: 0.116},
+	{ Name: "Lovely Stitch", Chance: 0.087},
+	{ Name: "Lovely Sus", Chance: 0.058},
+	{ Name: "Lovely Slime", Chance: 0.058},
+	{ Name: "His Name is Divorce Papers", Chance: 0.029},
+	{ Name: "Lovely Red Panda", Chance: 0.058},
+	{ Name: "Lovely TBH", Chance: 0.058},
+	{ Name: "Lovely Cookie", Chance: 0.058},
+	{ Name: "Lovely Fennec", Chance: 0.058},
+	{ Name: "Lovely Shade", Chance: 0.029},
+	{ Name: "Lovely Gatchi", Chance: 0.058},
+	{ Name: "Lovely Kanae", Chance: 0.058},
+	{ Name: "Prince of Friendship", Chance: 0.029},
+	{ Name: "Lovely Secretary", Chance: 0.029},
+	{ Name: "Lovely Cat Thing", Chance: 0.029},
+	{ Name: "Lovely Pancake Cat", Chance: 0.029}
 ]
 
 
@@ -207,7 +226,7 @@ var handleFormSubmit = function (event) {
 
 
   var iconChance = 100
-  var tweenChance = 100
+  var tweenChance = 99
   var gleamChance = 100
   var iconName = ""
   var tweenName = ""
