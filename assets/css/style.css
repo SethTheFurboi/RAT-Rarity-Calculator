@@ -2,7 +2,7 @@ body {
   font-family: 'Titillium Web', sans-serif;
   font-size: 16px;
   background-color: white;
-  color:white
+  color:black
 }
 
 h1,
@@ -19,12 +19,24 @@ h6 {
   font-weight: 200;
   font-style: italic;
 }
+.secret{
+  font-size: 0.005px;
+  background: transparent;
+  border: none !important;
+  position: relative;
+  left: 1250px;
+  color: #f1f1f1
+}
 
+.inverse{
+  color: #ffffff
+}
 .tab {
   position: relative;
   bottom: 3rem;
   overflow: hidden;
   background-color: #f1f1f1;
+  display: flex;
 }
 
 
