@@ -3,7 +3,7 @@ var nameInputEl = $('#icon-name');
 var tweenInputEl = $('#tween-effect');
 var gleamInputEl = $('#gleam-effect');
 var IconsListEl = $('#icons-list');
-
+let prefix_option = document.getElementById('prefix')
 function roundNumber(number, digits) {
     const multiple = Math.pow(10, digits);
     const roundedNum = Math.round(number * multiple) / multiple;
@@ -12,7 +12,15 @@ function roundNumber(number, digits) {
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
-
+function convertToPrefixedNumber(number) {
+	const units = ["", "K", "M", "B", "T", "Qa", "Qn", "Sx", "Sp", "Oc", "No", "Dc", "UDc", "DDc", "TDc", "QaDc", "QnDc", "SxDc"];
+	let unitIndex = 0;
+	while (number >= 1000 && unitIndex < units.length - 1) {
+	  number /= 1000;
+	  unitIndex++;
+	}
+	return number.toFixed(2) + units[unitIndex];
+  }
 function openTab(evt, Name) {
 	var i, tabcontent, tablinks;
 	tabcontent = document.getElementsByClassName("tabcontent");
@@ -28,18 +36,23 @@ function openTab(evt, Name) {
   }
 document.getElementById('dark_mode').addEventListener('change', function() {
 	dark_mode = document.getElementById("dark_mode")
-	console.log(dark_mode.checked)
 	let tab_color = document.getElementsByClassName("tab")
+	let secret_text = document.getElementsByClassName("secret")
+	let inverse_text = document.getElementsByClassName("inverse")
 	console.log(tab_color)
 	if (dark_mode.checked){
 		document.body.style.backgroundColor = '#3b3b3b'
 		document.body.style.color = "#ffffff"
 		tab_color[0].style.backgroundColor = "#666666"
+		secret_text[0].style.color = "#666666"
+		inverse_text[0].style.color = '#3b3b3b'
 	}
 	else {
 		document.body.style.backgroundColor = "#ffffff"
 		document.body.style.color = "#000000"
 		tab_color[0].style.backgroundColor = "#f1f1f1"
+		secret_text[0].style.color = "#f1f1f1"
+		inverse_text[0].style.color = '#ffffff'
 	}
 })
 // Asked ChatGPT to do this section below because I am lazy as heck -Kenshin
@@ -376,7 +389,7 @@ var rainbowChance = 0.391
 
 var printSkills = function (name, tween, gleam, isRainbow, rarity) {
   var listEl = $('<li>');
-  var iconString = ((isRainbow == true ? "Rainbow " : "") + ((tween != null && tween + " ") || "") + ((gleam != null && gleam + " ") || "") + name + " (1 in " + numberWithCommas(roundNumber(rarity,2)) + ")")
+  var iconString = ((isRainbow == true ? "Rainbow " : "") + ((tween != null && tween + " ") || "") + ((gleam != null && gleam + " ") || "") + name + " (1 in " + (prefix_option.checked == true ? convertToPrefixedNumber(roundNumber(rarity,2)) : numberWithCommas(roundNumber(rarity,2))) + ")")
   listEl.addClass('list-group-item').text(iconString);
   listEl.appendTo(IconsListEl);
 };
