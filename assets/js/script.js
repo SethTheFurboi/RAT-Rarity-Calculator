@@ -13,7 +13,36 @@ function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-// Asked ChatGPT to do this because I am lazy as heck -Kenshin
+function openTab(evt, Name) {
+	var i, tabcontent, tablinks;
+	tabcontent = document.getElementsByClassName("tabcontent");
+	for (i = 0; i < tabcontent.length; i++) {
+	  tabcontent[i].style.display = "none";
+	}
+	tablinks = document.getElementsByClassName("tablinks");
+	for (i = 0; i < tablinks.length; i++) {
+	  tablinks[i].className = tablinks[i].className.replace(" active", "");
+	}
+	document.getElementById(Name).style.display = "block";
+	evt.currentTarget.className += " active";
+  }
+document.getElementById('dark_mode').addEventListener('change', function() {
+	dark_mode = document.getElementById("dark_mode")
+	console.log(dark_mode.checked)
+	let tab_color = document.getElementsByClassName("tab")
+	console.log(tab_color)
+	if (dark_mode.checked){
+		document.body.style.backgroundColor = '#3b3b3b'
+		document.body.style.color = "#ffffff"
+		tab_color[0].style.backgroundColor = "#666666"
+	}
+	else {
+		document.body.style.backgroundColor = "#ffffff"
+		document.body.style.color = "#000000"
+		tab_color[0].style.backgroundColor = "#f1f1f1"
+	}
+})
+// Asked ChatGPT to do this section below because I am lazy as heck -Kenshin
 
 var baseIcons = [
 
