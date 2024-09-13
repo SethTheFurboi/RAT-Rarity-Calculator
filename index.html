@@ -16,16 +16,21 @@
     />
     <link rel="stylesheet" href="./assets/css/style.css" />
 
-    <title>RAT Rarity Calculator</title>
+    <title>RATatools!</title>
   </head>
   <body>
     <div class="bg-info text-light px-4 py-5 mb-5">
       <div class="container text-center">
-        <h1>RAT Icon Rarity Calculator</h1>
+        <h1>RATatools!</h1>
         <p>Made by Seth The Furboi and Kenshin</p>
       </div>
     </div>
-    <div class="container">
+    <div class="tab">
+      <button class="tablinks" onclick="openTab(event, 'Icon_Calculator')">Icon Calculator</button>
+      <button class="tablinks" onclick="openTab(event, 'Settings')">Settings</button>
+      <button class="tablinks secret" onclick="openTab(event, 'Secret')">Oh hey, I wonder where this leads!</button>
+    </div>
+    <div id="Icon_Calculator" class="container tabcontent">
       <div class="row">
         <div class="col-6">
           <h3>Icon Queries:</h3>
@@ -74,6 +79,18 @@
       </div>
     </div>
 
+    <div id="Settings" class="container tabcontent">
+      <label for="bgcolor">Dark Mode:</label>
+      <input type="checkbox" name="bgcolor" id="dark_mode">
+      <br>
+      <label for="prefix_number">Use Number Truncation:</label>
+      <input type="checkbox" name="prefix_number" id="prefix">
+      <p class="inverse">I stole the the from ratatype.com</p>
+    </div>
+    <div id="Secret" class="container tabcontent">
+      <p>now how do I mess with this website</p>
+      <img src="assets/Viro.jpg"
+    </div>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <!-- jQuery UI <script> tag -->
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
