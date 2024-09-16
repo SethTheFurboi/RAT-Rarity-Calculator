@@ -4,14 +4,23 @@ var tweenInputEl = $('#tween-effect');
 var gleamInputEl = $('#gleam-effect');
 var IconsListEl = $('#icons-list');
 let prefix_option = document.getElementById('prefix')
+let dark_mode = document.getElementById("dark_mode")
+
+// The way you did it is weird Kenshin so imma do a cheesy fix -Seth
+
+var isDarkmode = false
+var shortenNumbers = false
+
 function roundNumber(number, digits) {
     const multiple = Math.pow(10, digits);
     const roundedNum = Math.round(number * multiple) / multiple;
     return roundedNum;
 }
+
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
+
 function convertToPrefixedNumber(number) {
 	const units = ["", "K", "M", "B", "T", "Qa", "Qn", "Sx", "Sp", "Oc", "No", "Dc", "UDc", "DDc", "TDc", "QaDc", "QnDc", "SxDc"];
 	let unitIndex = 0;
@@ -21,6 +30,7 @@ function convertToPrefixedNumber(number) {
 	}
 	return number.toFixed(2) + units[unitIndex];
   }
+
 function openTab(evt, Name) {
 	var i, tabcontent, tablinks;
 	tabcontent = document.getElementsByClassName("tabcontent");
@@ -34,13 +44,27 @@ function openTab(evt, Name) {
 	document.getElementById(Name).style.display = "block";
 	evt.currentTarget.className += " active";
   }
-document.getElementById('dark_mode').addEventListener('change', function() {
-	dark_mode = document.getElementById("dark_mode")
+
+function updatePagePreferences() {
+
+	let pageSettings = JSON.parse(window.localStorage.getItem("Settings"))
+
+	if (pageSettings == undefined) {
+		pageSettings = {}
+	}
+
+	isDarkmode = pageSettings.darkMode | false
+	shortenNumbers = pageSettings.shortenNumbers | false
+
+	dark_mode.checked = isDarkmode
+	prefix_option.checked = shortenNumbers
+
+
 	let tab_color = document.getElementsByClassName("tab")
 	let secret_text = document.getElementsByClassName("secret")
 	let inverse_text = document.getElementsByClassName("inverse")
-	console.log(tab_color)
-	if (dark_mode.checked){
+	// console.log(tab_color)
+	if (isDarkmode == true){
 		document.body.style.backgroundColor = '#3b3b3b'
 		document.body.style.color = "#ffffff"
 		tab_color[0].style.backgroundColor = "#666666"
@@ -54,7 +78,41 @@ document.getElementById('dark_mode').addEventListener('change', function() {
 		secret_text[0].style.color = "#f1f1f1"
 		inverse_text[0].style.color = '#ffffff'
 	}
+	
+
+}
+
+updatePagePreferences()
+
+dark_mode.addEventListener('change', function() {
+
+	let pageSettings = JSON.parse(window.localStorage.getItem("Settings"))
+
+	if (pageSettings == undefined) {
+		pageSettings = {}
+	}
+
+	pageSettings.darkMode = dark_mode.checked
+
+	localStorage.setItem('Settings', JSON.stringify(pageSettings));
+
+	updatePagePreferences()
 })
+
+prefix_option.addEventListener('change', function() {
+
+	let pageSettings = JSON.parse(window.localStorage.getItem("Settings"))
+
+	if (pageSettings == undefined) {
+		pageSettings = {}
+	}
+
+	pageSettings.shortenNumbers = prefix_option.checked
+
+	localStorage.setItem('Settings', JSON.stringify(pageSettings));
+
+})	
+
 // Asked ChatGPT to do this section below because I am lazy as heck -Kenshin
 
 var baseIcons = [
