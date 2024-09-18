@@ -434,6 +434,8 @@ var tweenEffects = [
 var gleamEffects = [
 
   {Name: "Melting", Chance: 0.25},
+  {Name: "Snowy", Chance: 0.25},
+  {Name: "Christmas Haze", Chance: 0.25},
   {Name: "California Weather", Chance: 0.25},
   {Name: "Tryhard", Chance: 0.25},
   {Name: "Confetti", Chance: 0.25},
