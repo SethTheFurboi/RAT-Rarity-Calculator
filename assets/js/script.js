@@ -439,6 +439,7 @@ var gleamEffects = [
   {Name: "California Weather", Chance: 0.25},
   {Name: "Tryhard", Chance: 0.25},
   {Name: "Confetti", Chance: 0.25},
+  {Name: "Yolked", Chance: 0.25},
   {Name: "Pink Hearts", Chance: 0.25},
   {Name: "Blue Hearts", Chance: 0.25},
   {Name: "The Fool", Chance: 0.5}
