@@ -19,6 +19,36 @@ h6 {
   font-weight: 200;
   font-style: italic;
 }
+#window {
+  position: absolute;
+  visibility: hidden;
+  z-index: 9;
+  background-color: #f1f1f1;
+  text-align: center;
+  border: 1px solid #d3d3d3;
+  min-width: 150px;
+}
+
+#windowheader {
+  cursor: move;
+  z-index: 10;
+  background-color: #2196F3;
+  font-size: 14px;
+  color: #fff;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.window_button{
+  height: inherit;
+  width: 30%;
+  
+  border-style: none;
+  align-self: stretch;
+}
+.window_button:hover{
+  background-color: #ccc
+}
 .secret{
   font-size: 0.005px;
   background: transparent;
@@ -55,7 +85,9 @@ h6 {
   display: flex;
   max-height: 29px;
 }
-
+#canvas{
+  display:none
+}
 
 .tab button:hover {
   background-color: #ddd;
@@ -69,4 +101,127 @@ h6 {
   display: none;
   padding: 60px 12px;
   border-top: none;
+}
+.icon {
+  width: 128px;
+  height: 128px;
+  position: relative;
+  display: inline-block;
+  transition: transform 0.5s ease, rotate 0.5s ease;
+  background-size: 256px 256px;
+}
+
+.idle {
+  background-position: 0 0;
+  animation: hover_icon 8s infinite alternate;
+}
+
+.losing {
+  position: static;
+  animation: click_icon 0.4s forwards;
+  background-position: -128px 0;
+}
+
+.dazed {
+  position: relative;
+  background-position: -128px -128px;
+  animation: click_icon 0.4s forwards;
+}
+
+@keyframes click_icon {
+
+  0% {
+    rotate: 2deg;
+    transform: none;
+    animation-timing-function: ease-in-out;
+  }
+
+  40% {
+    rotate: -20deg;
+    transform: none;
+    animation-timing-function: ease-in-out;
+  }
+
+  65% {
+    rotate: -17deg;
+    transform: none;
+    animation-timing-function: ease-in-out;
+  }
+
+  85% {
+    rotate: -19deg;
+    transform: none;
+    animation-timing-function: ease-in-out;
+  }
+
+  100% {
+    rotate: -18.5deg;
+    transform: none;
+    animation-timing-function: ease-in-out;
+
+  }
+}
+
+@keyframes hover_icon {
+
+  0%,
+  100% {
+    rotate: 9deg;
+    transform: none;
+  }
+
+  50% {
+    rotate: -1deg;
+    transform: none;
+  }
+}
+
+#icontainer {
+  max-width: 128px;
+  max-height: 128px;
+  margin-top: 50px;
+}
+
+/* .jump:hover{
+    position: relative;
+    animation:  jump 0.5s infinite;
+} */
+.hover {
+  position: relative;
+  animation: fast_rotate 2s infinite, jump 0.5s infinite;
+  background-position: 0 -128px;
+}
+
+
+@keyframes jump {
+
+  0%,
+  100% {
+    top: 0px;
+    transform: none;
+    animation-timing-function: ease-out;
+  }
+
+  50% {
+    top: -15px;
+    /* Peak height */
+    transform: none;
+    animation-timing-function: ease-in;
+  }
+}
+
+@keyframes fast_rotate {
+
+  0%,
+  100% {
+    rotate: 9deg;
+    transform: none;
+    animation-timing-function: ease-in-out;
+  }
+
+  50% {
+    rotate: -9deg;
+    transform: none;
+    animation-timing-function: ease-in-out;
+  }
 }
