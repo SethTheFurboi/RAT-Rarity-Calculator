@@ -26,9 +26,9 @@
       </div>
     </div>
     <div class="tab">
-      <button class="tablinks" onclick="openTab(event, 'Icon_Calculator')">Icon Calculator</button>
+      <button class="tablinks" onclick="openTab(event, 'Icon_Calculator')" id="defaultOpen">Icon Calculator</button>
       <button class="tablinks" onclick="openTab(event, 'Settings')">Settings</button>
-      <button class="tablinks" onclick="openTab(event, '???? ???????')">???? ???????</button>
+      <button class="tablinks" onclick="openTab(event, 'Icon Previewer')">Icon Previewer</button>
       <button class="tablinks" onclick="openTab(event, 'Changelog')">Changelog</button>
       <button class="tablinks secret" onclick="openTab(event, 'Secret')">Oh hey, I wonder where this leads!</button>
     </div>
@@ -80,24 +80,38 @@
         </div>
       </div>
     </div>
-
+    <div id="window">
+      <div id="windowheader">The Running Otter
+        <button class="window_button" onclick="document.getElementById('window').style.visibility = 'hidden'">X</button>
+      </div>
+      <img src="assets\Wattson-SecondHalf.gif" width="120" class="gif">
+    </div>
     <div id="Settings" class="container tabcontent">
       <label for="bgcolor">Dark Mode:</label>
       <input type="checkbox" name="bgcolor" id="dark_mode">
       <br>
       <label for="prefix_number">Use Number Truncation:</label>
       <input type="checkbox" name="prefix_number" id="prefix">
+      <br>
+      <button onclick="document.getElementById('window').style.visibility = 'visible'">Display the running otter</button>
       <p class="inverse">I stole the name from ratatype.com</p>
     </div>
-    <div id="???? ???????" class="container tabcontent">
-      <h3>UNDER CONSTRUCTION</h3>
-      <p>Oh hey, uhhhh so here's the thing.</p>
-      <p>This part of the website ain't done yet.</p>
-      <p>This specific part is still being tested by cc_kenshin, uhhh</p>
-      <p>uhhhhhhh</p>
-      <p>here, have some random stuff i found</p>
-      <img src="assets\Wattson-SecondHalf.gif"width="150"class="gif">
-    </div>
+      <div id="Icon Previewer" class="container tabcontent">
+        <h2>This is very trashy at the moment, I may improve this but it's no guarantee - Kenshin</h2>
+        <div class="file-inputs">
+            <input type="file" id="file1" accept="image/*"><br>
+            <input type="file" id="file2" accept="image/*"><br>
+            <input type="file" id="file3" accept="image/*"><br>
+            <input type="file" id="file4" accept="image/*"><br>
+            <input type="file" id="file5" accept="image/*"><br>
+          </div>
+          <button onclick="combineImages()">Combine Images</button>
+          <canvas id="canvas" class="" width="300" height="300"></canvas>
+          <div class="" id="icontainer">
+            <div id="icon_entry" class="icon idle">
+          </div>
+        </div>
+      </div>
     <div id="Changelog" class="container tabcontent">
       <h2>September 5, 2024</h2>
       <h6>-The website's inception-</h6><br><br>
@@ -135,6 +149,9 @@
       <h2>September 20 2024</h2>
       <h6>-Update Speedrun-</h6><br><br>
       <p class="indent">--Added yolked gleam because we forgot again¯\_(ツ)_/¯, commit by SethTheFurboi</p><br>
+      <h2>October 26, 2024</h2>
+      <h6>-It's been a while huh?-</h6><br><br>
+      <p class="indent">--Added a whole new tab where you can view your icon. It's trashy at the moment. Commit by Kenshin</p><br>
     </div>
     <div id="Secret" class="container tabcontent">
       <p>now how do I mess with this website</p>

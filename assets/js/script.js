@@ -12,38 +12,170 @@ var isDarkmode = false
 var shortenNumbers = false
 
 function roundNumber(number, digits) {
-    const multiple = Math.pow(10, digits);
-    const roundedNum = Math.round(number * multiple) / multiple;
-    return roundedNum;
+	const multiple = Math.pow(10, digits);
+	const roundedNum = Math.round(number * multiple) / multiple;
+	return roundedNum;
 }
 
 function numberWithCommas(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
+
+//Copy from my prototype
+
+function icon_image_replacer(id, neutral_class, winning_class, losing_class, dazed_class) {
+	const image = document.getElementById(id);
+	const icontainer = document.getElementById('icontainer');
+
+	icontainer.addEventListener('mouseover', () => {
+		image.classList.remove(neutral_class, losing_class, dazed_class);
+		image.classList.add(winning_class);
+	});
+
+	icontainer.addEventListener('mouseout', () => {
+		image.classList.remove(winning_class, losing_class, dazed_class);
+		image.classList.add(neutral_class);
+	});
+
+	icontainer.addEventListener("click", () => {
+		image.classList.remove(neutral_class, winning_class, dazed_class);
+		image.classList.add(losing_class);
+	});
+
+	icontainer.addEventListener('contextmenu', function (event) {
+		event.preventDefault(); // Prevent the default context menu from appearing
+		image.classList.remove(neutral_class, winning_class, losing_class);
+		image.classList.add(dazed_class);
+	}
+	)
+}
+icon_image_replacer('icon_entry', 'idle', 'hover', 'losing', 'dazed')
+
+var loadFile = function (event) {
+	var image = document.getElementById('output');
+	image.src = URL.createObjectURL(event.target.files[0]);
+};
+
+
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+const icon = document.getElementsByClassName('icon')
+const images = [null, null, null, null, null];
+
+function loadImage(fileInput, index) {
+	const file = fileInput.files[0];
+	if (!file) return;
+
+	const img = new Image();
+	const reader = new FileReader();
+	const icontainer = document.getElementById('icontainer')
+
+	reader.onload = function (event) {
+		img.src = event.target.result;
+		img.onload = function () {
+			images[index] = img;
+		};
+	};
+
+	reader.readAsDataURL(file);
+}
+
+document.getElementById('file1').addEventListener('change', function () {
+	loadImage(this, 0);
+});
+document.getElementById('file2').addEventListener('change', function () {
+	loadImage(this, 1);
+});
+document.getElementById('file3').addEventListener('change', function () {
+	loadImage(this, 2);
+});
+document.getElementById('file4').addEventListener('change', function () {
+	loadImage(this, 3);
+});
+document.getElementById('file5').addEventListener('change', function () {
+	loadImage(this, 4);
+});
+
+function combineImages() {
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+	for (let i = 0; i < images.length; i++) {
+		if (images[i]) {
+			ctx.drawImage(images[i], 0, 0, canvas.width, canvas.height);
+		}
+	}
+	const combinedImageURL = canvas.toDataURL();
+	icon[0].style.backgroundImage = `url(${combinedImageURL})`;
+}
+
+//End of Prototype code
+
+function dragElement(elmnt) {
+	var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+	if (document.getElementById(elmnt.id + "header")) {
+		/* if present, the header is where you move the DIV from:*/
+		document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+	} else {
+		/* otherwise, move the DIV from anywhere inside the DIV:*/
+		elmnt.onmousedown = dragMouseDown;
+	}
+
+	function dragMouseDown(e) {
+		e = e || window.event;
+		e.preventDefault();
+		// get the mouse cursor position at startup:
+		pos3 = e.clientX;
+		pos4 = e.clientY;
+		document.onmouseup = closeDragElement;
+		// call a function whenever the cursor moves:
+		document.onmousemove = elementDrag;
+	}
+
+	function elementDrag(e) {
+		e = e || window.event;
+		e.preventDefault();
+		// calculate the new cursor position:
+		pos1 = pos3 - e.clientX;
+		pos2 = pos4 - e.clientY;
+		pos3 = e.clientX;
+		pos4 = e.clientY;
+		// set the element's new position:
+		elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+		elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+	}
+
+	function closeDragElement() {
+		/* stop moving when mouse button is released:*/
+		document.onmouseup = null;
+		document.onmousemove = null;
+	}
+}
+
+dragElement(document.getElementById("window"))
 
 function convertToPrefixedNumber(number) {
 	const units = ["", "K", "M", "B", "T", "Qa", "Qn", "Sx", "Sp", "Oc", "No", "Dc", "UDc", "DDc", "TDc", "QaDc", "QnDc", "SxDc"];
 	let unitIndex = 0;
 	while (number >= 1000 && unitIndex < units.length - 1) {
-	  number /= 1000;
-	  unitIndex++;
+		number /= 1000;
+		unitIndex++;
 	}
 	return number.toFixed(2) + units[unitIndex];
-  }
+}
 
 function openTab(evt, Name) {
 	var i, tabcontent, tablinks;
 	tabcontent = document.getElementsByClassName("tabcontent");
 	for (i = 0; i < tabcontent.length; i++) {
-	  tabcontent[i].style.display = "none";
+		tabcontent[i].style.display = "none";
 	}
 	tablinks = document.getElementsByClassName("tablinks");
 	for (i = 0; i < tablinks.length; i++) {
-	  tablinks[i].className = tablinks[i].className.replace(" active", "");
+		tablinks[i].className = tablinks[i].className.replace(" active", "");
 	}
 	document.getElementById(Name).style.display = "block";
 	evt.currentTarget.className += " active";
-  }
+}
 
 function updatePagePreferences() {
 
@@ -64,7 +196,7 @@ function updatePagePreferences() {
 	let secret_text = document.getElementsByClassName("secret")
 	let inverse_text = document.getElementsByClassName("inverse")
 	// console.log(tab_color)
-	if (isDarkmode == true){
+	if (isDarkmode == true) {
 		document.body.style.backgroundColor = '#3b3b3b'
 		document.body.style.color = "#ffffff"
 		tab_color[0].style.backgroundColor = "#666666"
@@ -78,13 +210,13 @@ function updatePagePreferences() {
 		secret_text[0].style.color = "#f1f1f1"
 		inverse_text[0].style.color = '#ffffff'
 	}
-	
+
 
 }
 
 updatePagePreferences()
 
-dark_mode.addEventListener('change', function() {
+dark_mode.addEventListener('change', function () {
 
 	let pageSettings = JSON.parse(window.localStorage.getItem("Settings"))
 
@@ -99,7 +231,7 @@ dark_mode.addEventListener('change', function() {
 	updatePagePreferences()
 })
 
-prefix_option.addEventListener('change', function() {
+prefix_option.addEventListener('change', function () {
 
 	let pageSettings = JSON.parse(window.localStorage.getItem("Settings"))
 
@@ -111,7 +243,7 @@ prefix_option.addEventListener('change', function() {
 
 	localStorage.setItem('Settings', JSON.stringify(pageSettings));
 
-})	
+})
 
 // Asked ChatGPT to do this section below because I am lazy as heck -Kenshin
 
@@ -444,97 +576,98 @@ var gleamEffects = [
   {Name: "Blue Hearts", Chance: 0.25},
   {Name: "The Fool", Chance: 0.5}
 	
-]	
+]
 
-var rainbowChance = 0.391	
+var rainbowChance = 0.391
 
 var printSkills = function (name, tween, gleam, isRainbow, rarity) {
-  var listEl = $('<li>');
-  var iconString = ((isRainbow == true ? "Rainbow " : "") + ((tween != null && tween + " ") || "") + ((gleam != null && gleam + " ") || "") + name + " (1 in " + (prefix_option.checked == true ? convertToPrefixedNumber(roundNumber(rarity,2)) : numberWithCommas(roundNumber(rarity,2))) + ")")
-  listEl.addClass('list-group-item').text(iconString);
-  listEl.appendTo(IconsListEl);
+	var listEl = $('<li>');
+	var iconString = ((isRainbow == true ? "Rainbow " : "") + ((tween != null && tween + " ") || "") + ((gleam != null && gleam + " ") || "") + name + " (1 in " + (prefix_option.checked == true ? convertToPrefixedNumber(roundNumber(rarity, 2)) : numberWithCommas(roundNumber(rarity, 2))) + ")")
+	listEl.addClass('list-group-item').text(iconString);
+	listEl.appendTo(IconsListEl);
 };
 
 var handleFormSubmit = function (event) {
-  event.preventDefault();
+	event.preventDefault();
 
-  var nameInput = nameInputEl.val();
-  var tweenInput = tweenInputEl.val()
-  var gleamInput = gleamInputEl.val()
-  var rainbowSelected = document.getElementById("rainbow-checkbox")
+	var nameInput = nameInputEl.val();
+	var tweenInput = tweenInputEl.val()
+	var gleamInput = gleamInputEl.val()
+	var rainbowSelected = document.getElementById("rainbow-checkbox")
 
-//   console.log(rainbowSelected.checked)
+	//   console.log(rainbowSelected.checked)
 
-  if (!nameInput) {
-    alert('You need to put in an icon!');
-    return;
-  }
+	if (!nameInput) {
+		alert('You need to put in an icon!');
+		return;
+	}
 
 
-  var iconChance = 100
-  var tweenChance = 99
-  var gleamChance = 100
-  var iconName = ""
-  var tweenName = ""
-  var gleamName = ""
- for (var i = 0; i < baseIcons.length + 1; i++) {
+	var iconChance = 100
+	var tweenChance = 99
+	var gleamChance = 100
+	var iconName = ""
+	var tweenName = ""
+	var gleamName = ""
+	for (var i = 0; i < baseIcons.length + 1; i++) {
 
-    var currThing = baseIcons[i]
+		var currThing = baseIcons[i]
 
-   if (currThing) {
-    
-      if (currThing.Name.toLowerCase() == nameInput.toLowerCase()) {
-        iconChance = currThing.Chance
-        // console.log(currThing)
-        iconName = currThing.Name
-        break
-      } 
-    }
+		if (currThing) {
 
-  }
-  
-  if (iconName == "") {
-    alert(`${nameInput} is not an icon! Check for any typos because this program is delicate.`);
-    return;
-  }
+			if (currThing.Name.toLowerCase() == nameInput.toLowerCase()) {
+				iconChance = currThing.Chance
+				// console.log(currThing)
+				iconName = currThing.Name
+				break
+			}
+		}
 
-  for (var i = 0; i < tweenEffects.length + 1; i++) {
+	}
 
-    var currThing = tweenEffects[i]
+	if (iconName == "") {
+		alert(`${nameInput} is not an icon! Check for any typos because this program is delicate.`);
+		return;
+	}
 
-    if (currThing) {
-      if (currThing.Name.toLowerCase() == tweenInput.toLowerCase()) {
-        tweenChance = currThing.Chance
-		tweenName = currThing.Name
-        break
-      }
-    }
+	for (var i = 0; i < tweenEffects.length + 1; i++) {
 
-  }
-  for (var i = 0; i < gleamEffects.length + 1; i++) {
+		var currThing = tweenEffects[i]
 
-    var currThing = gleamEffects[i]
+		if (currThing) {
+			if (currThing.Name.toLowerCase() == tweenInput.toLowerCase()) {
+				tweenChance = currThing.Chance
+				tweenName = currThing.Name
+				break
+			}
+		}
 
-    if (currThing) {
-      if (currThing.Name.toLowerCase() == gleamInput.toLowerCase()) {
-        gleamChance = currThing.Chance
-		gleamName = currThing.Name
-        break
-      }
-    }
+	}
+	for (var i = 0; i < gleamEffects.length + 1; i++) {
 
-  }
-  // I forgot to switch the 1 / dang itttttttttttttt -Kenshin
-  var calculated_rarity = 1 / ((iconChance / 100) * (tweenChance / 100) * (gleamChance / 100) * (rainbowSelected.checked == true ? rainbowChance : 100 - rainbowChance)  / 100)
-  printSkills(iconName, tweenName, gleamName, rainbowSelected.checked, calculated_rarity);
+		var currThing = gleamEffects[i]
 
-  // :3 (Please don't remove this it's funni -Seth)
-  console.log("Prism was here.")
+		if (currThing) {
+			if (currThing.Name.toLowerCase() == gleamInput.toLowerCase()) {
+				gleamChance = currThing.Chance
+				gleamName = currThing.Name
+				break
+			}
+		}
 
-  // resets form
-  nameInputEl.val('')
-  tweenInputEl.val('')
-  gleamInputEl.val('');
+	}
+	// I forgot to switch the 1 / dang itttttttttttttt -Kenshin
+	var calculated_rarity = 1 / ((iconChance / 100) * (tweenChance / 100) * (gleamChance / 100) * (rainbowSelected.checked == true ? rainbowChance : 100 - rainbowChance) / 100)
+	printSkills(iconName, tweenName, gleamName, rainbowSelected.checked, calculated_rarity);
+
+	// :3 (Please don't remove this it's funni -Seth)
+	console.log("Prism was here.")
+	console.log("\x1b[38;5;209mAnd will forever be...")
+
+	// resets form
+	nameInputEl.val('')
+	tweenInputEl.val('')
+	gleamInputEl.val('');
 };
 
 formEl.on('submit', handleFormSubmit);
@@ -545,61 +678,62 @@ formEl.on('submit', handleFormSubmit);
 
 $(function () {
 
-  var iconNames = [];
-  
-  for (var i = 0; i < baseIcons.length + 1; i++) {
+	var iconNames = [];
 
-    if (baseIcons[i] != null) {
+	for (var i = 0; i < baseIcons.length + 1; i++) {
 
-      iconNames.push(baseIcons[i].Name)
+		if (baseIcons[i] != null) {
 
-    }
-	  
-  }  
+			iconNames.push(baseIcons[i].Name)
 
-//   console.log(iconNames)
-  
-  $('#icon-name').autocomplete({
-    source: iconNames,
-  });
+		}
+
+	}
+
+	//   console.log(iconNames)
+
+	$('#icon-name').autocomplete({
+		source: iconNames,
+	});
 })
 $(function () {
 
 	var tweenNames = [];
-	
+
 	for (var i = 0; i < tweenEffects.length + 1; i++) {
-  
-	  if (tweenEffects[i] != null) {
-  
-		tweenNames.push(tweenEffects[i].Name)
-  
-	  }
-		
-	}  
-  
+
+		if (tweenEffects[i] != null) {
+
+			tweenNames.push(tweenEffects[i].Name)
+
+		}
+
+	}
+
 	// console.log(tweenNames)
-	
+
 	$('#tween-effect').autocomplete({
-	  source: tweenNames,
+		source: tweenNames,
 	});
-  })
-  $(function () {
+})
+$(function () {
 
 	var gleamNames = [];
-	
+
 	for (var i = 0; i < gleamEffects.length + 1; i++) {
-  
-	  if (gleamEffects[i] != null) {
-  
-		gleamNames.push(gleamEffects[i].Name)
-  
-	  }
-		
-	}  
-  
+
+		if (gleamEffects[i] != null) {
+
+			gleamNames.push(gleamEffects[i].Name)
+
+		}
+
+	}
+
 	// console.log(gleamNames)
-	
+
 	$('#gleam-effect').autocomplete({
-	  source: gleamNames,
+		source: gleamNames,
 	});
-  })
+})
+document.getElementById("defaultOpen").click()
