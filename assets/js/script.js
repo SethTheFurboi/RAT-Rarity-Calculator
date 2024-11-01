@@ -593,7 +593,7 @@ var baseIcons = [
 	{ Name: "Haunted Slime", Chance: 0.059},
 	{ Name: "Haunted Dots", Chance: 0.059},
 	{ Name: "Haunted Gatchi", Chance: 0.059},
-	{ Name: "Haunted Fennec", Chance: 0.059},
+	{ Name: "Haunted Cookie", Chance: 0.059},
 	{ Name: "Haunted Leafy", Chance: 0.059},
 	{ Name: "Haunted Slime", Chance: 0.059},
 	{ Name: "Haunted Dots", Chance: 0.059},
