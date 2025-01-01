@@ -368,6 +368,17 @@ var baseIcons = [
 	{ Name: "Cheddar Secretary", Chance: 0.003 },
 	{ Name: "Prince of Cheddar", Chance: 0.003 },
 
+	// Christmas, just a week away!
+
+	{Name: "Merry Hat Guy (2024)", Chance: 3.33},
+    {Name: "Nerd Cube (2024)", Chance: 3.33},
+    {Name: "Giftrat", Chance: 0.538},
+    {Name: "Snow Mousie (2024)", Chance: 0.624},
+    {Name: "Sterling (2024)", Chance: 0.624},
+    {Name: "Christmas Past (2024)", Chance: 0.299},
+    {Name: "Can you believe it? (Brown) (2024)", Chance: 0.239},
+    {Name: "Can you believe it? (Green) (2024)", Chance: 0.06},
+
 	// Weather event
 
 	{ Name: "Energized Guy", Chance: 0.16},
